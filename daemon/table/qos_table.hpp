@@ -7,7 +7,7 @@
 
 namespace nfd {
 namespace qos {
-  class QosTable : noncopyable
+  class QosTable 
   {
   public:
     explicit
@@ -21,14 +21,14 @@ namespace qos {
     erase(QosEntry& entry);
 
     uint16_t
-    match_and_fetch(ndn::Name& name);
+    match_and_fetch(const ndn::Name& name);
 
 
     std::vector<QosEntry> m_policy_vector;
 
   private:
     QosEntry
-    const get(Name& name);
+    const get(const Name& name);
 
   };
 }

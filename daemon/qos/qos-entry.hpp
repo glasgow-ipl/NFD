@@ -19,9 +19,9 @@ class QosEntry{
 
     uint16_t getFbField();
 
-    bool prefixMatch(Name& name);
+    bool prefixMatch(const Name& name);
 
-    bool match(Name& name);
+    bool match(const Name& name);
 
   private:
   Name m_prefix;

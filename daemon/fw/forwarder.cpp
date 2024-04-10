@@ -89,6 +89,8 @@ Forwarder::Forwarder(FaceTable& faceTable)
   });
 
   m_strategyChoice.setDefaultStrategy(getDefaultStrategyName());
+
+  m_qos = qos::Qos();
 }
 
 Forwarder::~Forwarder() = default;
@@ -273,6 +275,8 @@ Forwarder::onOutgoingInterest(const Interest& interest, Face& egress,
   // insert out-record
   auto it = pitEntry->insertOrUpdateOutRecord(egress, interest);
   BOOST_ASSERT(it != pitEntry->out_end());
+
+  m_qos.markPacket( (ndn::PacketBase&) interest, interest.getName());
 
   // send Interest
   egress.sendInterest(interest);

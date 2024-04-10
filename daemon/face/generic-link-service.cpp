@@ -109,6 +109,7 @@ GenericLinkService::sendLpPacket(lp::Packet&& pkt)
     NFD_LOG_FACE_WARN("attempted to send packet over MTU limit");
     return;
   }
+  block.set_fbField(pkt.get_fbField());
   this->sendPacket(block);
 }
 
@@ -118,7 +119,8 @@ GenericLinkService::doSendInterest(const Interest& interest)
   lp::Packet lpPacket(interest.wireEncode());
 
   encodeLpFields(interest, lpPacket);
-
+  uint16_t fbField = interest.getFbField();
+  lpPacket.set_fbField(fbField);
   this->sendNetPacket(std::move(lpPacket), true);
 }
 

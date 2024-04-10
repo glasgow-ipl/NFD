@@ -38,6 +38,7 @@
 #include "table/strategy-choice.hpp"
 #include "table/dead-nonce-list.hpp"
 #include "table/network-region-table.hpp"
+#include "qos/qos.hpp"
 
 namespace nfd {
 
@@ -269,6 +270,9 @@ private:
   DeadNonceList      m_deadNonceList;
   NetworkRegionTable m_networkRegionTable;
   shared_ptr<Face>   m_csFace;
+  
+  // QoS table ry6
+  nfd::qos::Qos m_qos;
 
   // allow Strategy (base class) to enter pipelines
   friend class fw::Strategy;

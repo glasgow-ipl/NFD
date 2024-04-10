@@ -30,7 +30,7 @@ namespace qos{
   }
 
   const QosEntry
-  QosTable::get(Name& name){
+  QosTable::get(const Name& name){
     std::vector<QosEntry>::iterator it;
     int index = 0;
     for(it = this->m_policy_vector.begin(); it != this->m_policy_vector.end(); it++,index++) {
@@ -38,12 +38,12 @@ namespace qos{
         return *it;
       }
     }
-    QosEntry wildcard = QosEntry("*",0);
+    QosEntry wildcard = QosEntry("*",BOOST_BINARY( 10111000 ));
     return wildcard;
   }
 
   uint16_t
-  QosTable::match_and_fetch(Name& name){
+  QosTable::match_and_fetch(const Name& name){
     std::vector<QosEntry>::iterator it;
     int index = 0;
     for(it = this->m_policy_vector.begin(); it != this->m_policy_vector.end(); it++,index++) {
@@ -51,6 +51,6 @@ namespace qos{
         return it->getFbField();
       }
     }    
-    return 0;
+    return BOOST_BINARY( 10111000 );
   }
 }}

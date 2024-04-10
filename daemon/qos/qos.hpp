@@ -8,17 +8,17 @@
 namespace nfd {
 namespace qos {
 
-  class Qos : noncopyable
+  class Qos
   {
   public:
-    explicit
     Qos();
 
   public:
 
     void
-    markPacket(ndn::PacketBase& pkt, Name& name);
-
+    markPacket(ndn::PacketBase& pkt, const Name& name);
+  
+  private:
     QosTable m_qosTable;
 
   };

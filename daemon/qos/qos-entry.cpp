@@ -16,7 +16,7 @@ namespace qos{
 
     QosEntry::QosEntry()
     :   m_prefix(Name("*")),
-        m_fb_field(0)
+        m_fb_field(BOOST_BINARY( 10111000 ))
     {}
 
     QosEntry::~QosEntry(){}
@@ -29,11 +29,11 @@ namespace qos{
       return m_fb_field;
     }
 
-    bool QosEntry::prefixMatch(Name& name){
+    bool QosEntry::prefixMatch(const Name& name){
       return m_prefix.isPrefixOf(name);
     }
 
-    bool QosEntry::match(Name& name){
+    bool QosEntry::match(const Name& name){
       return m_prefix.equals(name);
     }
 }
