@@ -439,6 +439,7 @@ Forwarder::onOutgoingData(const Data& data, Face& egress)
   }
 
   // TODO traffic manager
+   m_qos.markPacket( (ndn::PacketBase&) data, data.getName());
 
   // send Data
   egress.sendData(data);
