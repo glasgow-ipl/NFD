@@ -8,8 +8,11 @@ Qos::Qos()
   m_qosTable = QosTable();
 
   Name prioPrefix("/prio");
-  QosEntry entry = QosEntry(prioPrefix, 0b101110);
-  m_qosTable.push(entry);
+  QosEntry prioEntry = QosEntry(prioPrefix, BOOST_BINARY(10111000));
+  m_qosTable.push(prioEntry);
+  Name streaming_A_live_prefix("/streaming_service_A");
+  QosEntry streaming_A_live = QosEntry(streaming_A_live_prefix,BOOST_BINARY(10111000));
+  m_qosTable.push(streaming_A_live);
 }
 
 void

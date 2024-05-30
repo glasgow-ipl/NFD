@@ -38,7 +38,7 @@ namespace qos{
         return *it;
       }
     }
-    QosEntry wildcard = QosEntry("*",BOOST_BINARY( 10111000 ));
+    QosEntry wildcard = QosEntry("*",BOOST_BINARY( 00000000 ));
     return wildcard;
   }
 
@@ -48,9 +48,10 @@ namespace qos{
     int index = 0;
     for(it = this->m_policy_vector.begin(); it != this->m_policy_vector.end(); it++,index++) {
       if(it->prefixMatch(name)){
+	std::cout<<name.toUri()<<std::endl;
         return it->getFbField();
       }
     }    
-    return BOOST_BINARY( 10111000 );
+    return BOOST_BINARY( 00000000 ); //CS0 Best Effort (0)
   }
 }}
