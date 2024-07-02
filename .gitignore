@@ -6,6 +6,9 @@
 *.elc
 .\#*
 
+# vim
+.*.sw*
+
 # Visual Studio Code
 .vscode/
 
