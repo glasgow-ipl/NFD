@@ -17,7 +17,7 @@ Qos::Qos()
 
 void
 Qos::markPacket(ndn::PacketBase& pkt, const Name& name){
-  uint16_t fb_code = BOOST_BINARY( 10111000 );
+  uint16_t fb_code = BOOST_BINARY( 00000000 ); //default 
   //lookup
   fb_code = m_qosTable.match_and_fetch(name);
   //mark
