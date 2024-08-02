@@ -110,6 +110,7 @@ GenericLinkService::sendLpPacket(lp::Packet&& pkt)
     return;
   }
   block.set_fbField(pkt.get_fbField());
+  block.set_name(pkt.get_name());
   this->sendPacket(block);
 }
 
@@ -121,6 +122,8 @@ GenericLinkService::doSendInterest(const Interest& interest)
   encodeLpFields(interest, lpPacket);
   uint16_t fbField = interest.getFbField();
   lpPacket.set_fbField(fbField);
+  std::string name = interest.getName().toUri();
+  lpPacket.set_name(name);
   this->sendNetPacket(std::move(lpPacket), true);
 }
 
@@ -130,7 +133,10 @@ GenericLinkService::doSendData(const Data& data)
   lp::Packet lpPacket(data.wireEncode());
 
   encodeLpFields(data, lpPacket);
-
+  uint16_t fbField = data.getFbField();
+  lpPacket.set_fbField(fbField);
+  std::string name = data.getName().toUri();
+  lpPacket.set_name(name);
   this->sendNetPacket(std::move(lpPacket), false);
 }
 
