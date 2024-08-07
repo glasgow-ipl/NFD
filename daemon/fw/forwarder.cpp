@@ -441,7 +441,7 @@ Forwarder::onOutgoingData(const Data& data, Face& egress)
   // TODO traffic manager
   NFD_LOG_DEBUG("marking data Packet");
   m_qos.markPacket( (ndn::PacketBase&) data, data.getName());
-  std::cout << "onOutGoingData mark:" + std::to_string(data.getFbField()) << ",Data:"+ data.getName().toUri() << std::endl;
+  //std::cout << "onOutGoingData mark:" + std::to_string(data.getFbField()) << ",Data:"+ data.getName().toUri() << std::endl;
   // send Data
   egress.sendData(data);
   ++m_counters.nOutData;

@@ -48,7 +48,7 @@ namespace qos{
     int index = 0;
     for(it = this->m_policy_vector.begin(); it != this->m_policy_vector.end(); it++,index++) {
       if(it->prefixMatch(name)){
-	std::cout<<name.toUri()<<std::endl;
+	//std::cout<<name.toUri()<<std::endl;
         return it->getFbField();
       }
     }    
